@@ -2,18 +2,18 @@ import {
   Alert,
   Button,
   Container,
+  IconButton,
   Paper,
   TextField,
   Typography,
-  IconButton,
 } from "@mui/material";
+
 import Card from "@/components/Card";
 import CloseIcon from "@mui/icons-material/Close";
-
 import Grid from "@mui/material/Unstable_Grid2";
 import { LoadingButton } from "@mui/lab";
-import { useState } from "react";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 export default function Create() {
   const [isLoading, setIsLoading] = useState(false);
@@ -35,7 +35,7 @@ export default function Create() {
   const generateImage = async (event) => {
     event.preventDefault();
     setIsLoading(true);
-    const response = await fetch("/api/generateAvatar", {
+    const response = await fetch("/api/generateDalle2Image", {
       method: "POST",
       body: JSON.stringify(formValues),
     });
@@ -47,7 +47,7 @@ export default function Create() {
   const saveAvatar = async (event) => {
     event.preventDefault();
     setIsSaving(true);
-    const response = await fetch("/api/createAvatar", {
+    const response = await fetch("/api/avatar", {
       method: "POST",
       body: JSON.stringify(activeAvatar),
     });

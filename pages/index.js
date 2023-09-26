@@ -8,7 +8,7 @@ import Head from "next/head";
 export default function Home() {
   const [avatars, setAvatars] = useState([]);
   useEffect(() => {
-    fetch("/api/createAvatar")
+    fetch("/api/avatar")
       .then((res) => res.json())
       .then((data) => setAvatars(data));
   }, []);
