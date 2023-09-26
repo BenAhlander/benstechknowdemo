@@ -1,5 +1,3 @@
-import { sql } from "@vercel/postgres";
-
 export default async function handler(req, res) {
   const { Configuration, OpenAIApi } = require("openai");
 
