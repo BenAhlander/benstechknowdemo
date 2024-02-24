@@ -10,10 +10,10 @@ export default async function handler(req, res) {
             apiKey: process.env.OPENAI_API_KEY,
           });
           const response = await openai.images.generate({
-            model: "dall-e-3",
+            model: "dall-e-2",
             prompt: description,
             n: 1,
-            size: "1024x1024",
+            size: "512x512",
           });
           console.log(response);
           const image_url = response.data[0].url;
