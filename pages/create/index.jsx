@@ -24,6 +24,7 @@ export default function Create() {
   });
   const [activeAvatar, setActiveAvatar] = useState(null);
   const [showSuccessAlert, setShowSuccessAlert] = useState(false);
+  const [showError, setShowError] = useState(false);
 
   const router = useRouter();
 
@@ -47,19 +48,27 @@ export default function Create() {
   const saveAvatar = async (event) => {
     event.preventDefault();
     setIsSaving(true);
-    const response = await fetch("/api/avatar", {
-      method: "POST",
-      body: JSON.stringify(activeAvatar),
-    });
-    const data = await response.json();
-    console.log(data);
-    setActiveAvatar(null);
-    setFormValues({
-      name: "",
-      description: "",
-    });
-    setIsSaving(false);
-    setShowSuccessAlert(true);
+    try {
+      const response = await fetch("/api/avatar", {
+        method: "POST",
+        body: JSON.stringify(activeAvatar),
+      });
+      const data = await response.json();
+      console.log(data);
+      setActiveAvatar(null);
+      setFormValues({
+        name: "",
+        description: "",
+      });
+      setIsSaving(false);
+      setShowError(false);
+      setShowSuccessAlert(true);
+    } catch (error) {
+      console.error(error);
+      setIsSaving(false);
+      setShowError(true);
+      setShowSuccessAlert(false);
+    }
   };
 
   return (
@@ -160,6 +169,23 @@ export default function Create() {
                 }
               >
                 Your Avatar Has Been Added To the Board!
+              </Alert>
+            </Grid>
+          )}
+          {showError && (
+            <Grid item xs={12}>
+              <Alert
+                onClose={() => {
+                  setShowError(false);
+                }}
+                severity="error"
+                action={
+                  <IconButton size="small" onClick={() => setShowError(false)}>
+                    <CloseIcon fontSize="small" />
+                  </IconButton>
+                }
+              >
+                There was an error saving the avatar. Please try again.
               </Alert>
             </Grid>
           )}
