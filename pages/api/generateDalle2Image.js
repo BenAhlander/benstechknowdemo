@@ -1,22 +1,22 @@
+import OpenAI from "openai";
+
 export default async function handler(req, res) {
-  const { Configuration, OpenAIApi } = require("openai");
-
-  const configuration = new Configuration({
-    apiKey: process.env.OPENAI_API_KEY,
-  });
-  const openai = new OpenAIApi(configuration);
-
   switch (req.method) {
     case "POST":
       try {
         const { name, description } = JSON.parse(req.body);
         try {
-          const response = await openai.createImage({
+          const openai = new OpenAI({
+            apiKey: process.env.OPENAI_API_KEY,
+          });
+          const response = await openai.images.generate({
+            model: "dall-e-3",
             prompt: description,
             n: 1,
-            size: "512x512",
+            size: "1024x1024",
           });
-          const image_url = response.data.data[0].url;
+          console.log(response);
+          const image_url = response.data[0].url;
           res.status(200).json({ name, image_url, description });
         } catch (error) {
           console.error(error);
