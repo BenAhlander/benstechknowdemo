@@ -1,5 +1,10 @@
 import OpenAI from "openai";
 
+// This function can run for a maximum of 5 seconds
+export const config = {
+  maxDuration: 20,
+};
+
 export default async function handler(req, res) {
   switch (req.method) {
     case "POST":
