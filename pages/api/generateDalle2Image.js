@@ -10,7 +10,7 @@ export default async function handler(req, res) {
             apiKey: process.env.OPENAI_API_KEY,
           });
           const response = await openai.images.generate({
-            model: "dall-e-2",
+            model: "dall-e-3",
             prompt: description,
             n: 1,
             size: "1024x1024",
