@@ -5,6 +5,7 @@ export default async function handler(req, res) {
     case "GET":
       const { rows: getRows } = await sql`SELECT * FROM techno_avatars;`;
       const sortedRows = getRows.reverse();
+      console.log("list of avatars", sortedRows);
       res.status(200).json(sortedRows);
       break;
     case "POST":
