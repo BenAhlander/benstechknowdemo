@@ -36,13 +36,18 @@ export default function Create() {
   const generateImage = async (event) => {
     event.preventDefault();
     setIsLoading(true);
-    const response = await fetch("/api/generateDalle2Image", {
-      method: "POST",
-      body: JSON.stringify(formValues),
-    });
-    const data = await response.json();
-    setActiveAvatar(data);
-    setIsLoading(false);
+    try {
+      const response = await fetch("/api/generateDalle2Image", {
+        method: "POST",
+        body: JSON.stringify(formValues),
+      });
+      const data = await response.json();
+      setActiveAvatar(data);
+      setIsLoading(false);
+    } catch (error) {
+      console.error(error);
+      setIsLoading(false);
+    }
   };
 
   const saveAvatar = async (event) => {
