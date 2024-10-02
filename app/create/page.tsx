@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Alert,
   Button,
@@ -12,7 +14,7 @@ import Card from "@/components/Card";
 import CloseIcon from "@mui/icons-material/Close";
 import Grid from "@mui/material/Unstable_Grid2";
 import { LoadingButton } from "@mui/lab";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function Create() {
@@ -160,7 +162,10 @@ export default function Create() {
                     <Button
                       color="inherit"
                       size="small"
-                      onClick={() => router.push("/")}
+                      onClick={() => {
+                        router.push("/");
+                        router.refresh();
+                      }}
                     >
                       Check It Out
                     </Button>

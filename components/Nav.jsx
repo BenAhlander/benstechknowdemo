@@ -1,3 +1,5 @@
+"use client";
+
 import * as React from "react";
 
 import AdbIcon from "@mui/icons-material/Adb";
@@ -11,7 +13,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 const pages = [
   { key: "view", label: "View Avatar's", route: "/" },
@@ -86,7 +88,10 @@ function ResponsiveAppBar() {
               {pages.map((page) => (
                 <MenuItem
                   key={page.key}
-                  onClick={() => router.push(page.route)}
+                  onClick={() => {
+                    router.push(page.route);
+                    router.refresh();
+                  }}
                 >
                   <Typography textAlign="center">{page.label}</Typography>
                 </MenuItem>

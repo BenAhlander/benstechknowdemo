@@ -1,17 +1,13 @@
-import { useEffect, useState } from "react";
-
 import Card from "@/components/Card";
 import { Container } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import Head from "next/head";
+import { getAvatars } from "@/serverFunctions/avatarUtils";
 
-export default function Home() {
-  const [avatars, setAvatars] = useState([]);
-  useEffect(() => {
-    fetch("/api/avatar")
-      .then((res) => res.json())
-      .then((data) => setAvatars(data));
-  }, []);
+export default async function Home() {
+  const avatars = await getAvatars();
+  console.log(avatars);
+
   return (
     <>
       <Head>
