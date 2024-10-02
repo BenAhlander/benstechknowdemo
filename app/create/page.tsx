@@ -17,6 +17,12 @@ import { LoadingButton } from "@mui/lab";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
+type Avatar = {
+  name?: string;
+  description?: string;
+  image_url?: string;
+};
+
 export default function Create() {
   const [isLoading, setIsLoading] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
@@ -24,7 +30,7 @@ export default function Create() {
     name: "",
     description: "",
   });
-  const [activeAvatar, setActiveAvatar] = useState(null);
+  const [activeAvatar, setActiveAvatar] = useState<Avatar | null>(null);
   const [showSuccessAlert, setShowSuccessAlert] = useState(false);
   const [showError, setShowError] = useState(false);
 
@@ -82,10 +88,10 @@ export default function Create() {
     <Container maxWidth="sm">
       <Paper style={{ padding: "16px" }}>
         <Grid container spacing={2}>
-          <Grid item xs={12}>
+          <Grid xs={12}>
             <Typography variant="h4">Create New Avatar</Typography>
           </Grid>
-          <Grid item xs={12}>
+          <Grid xs={12}>
             <TextField
               name="name"
               fullWidth
@@ -96,7 +102,7 @@ export default function Create() {
               placeholder="Bob"
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid xs={12}>
             <TextField
               fullWidth
               label="description"
@@ -110,7 +116,7 @@ export default function Create() {
             />
           </Grid>
           {!activeAvatar ? (
-            <Grid item xs={12}>
+            <Grid xs={12}>
               <LoadingButton
                 loading={isLoading}
                 fullWidth
@@ -122,7 +128,7 @@ export default function Create() {
             </Grid>
           ) : (
             <>
-              <Grid item xs={6}>
+              <Grid xs={6}>
                 <LoadingButton
                   loading={isLoading}
                   fullWidth
@@ -132,7 +138,7 @@ export default function Create() {
                   Try Again
                 </LoadingButton>
               </Grid>
-              <Grid item xs={6}>
+              <Grid xs={6}>
                 <LoadingButton
                   loading={isSaving}
                   fullWidth
@@ -142,7 +148,7 @@ export default function Create() {
                   Save
                 </LoadingButton>
               </Grid>
-              <Grid item xs={12}>
+              <Grid xs={12}>
                 <Card
                   name={activeAvatar.name}
                   image={activeAvatar.image_url}
@@ -152,7 +158,7 @@ export default function Create() {
             </>
           )}
           {showSuccessAlert && (
-            <Grid item xs={12}>
+            <Grid xs={12}>
               <Alert
                 onClose={() => {
                   setShowSuccessAlert(false);
@@ -183,7 +189,7 @@ export default function Create() {
             </Grid>
           )}
           {showError && (
-            <Grid item xs={12}>
+            <Grid xs={12}>
               <Alert
                 onClose={() => {
                   setShowError(false);
