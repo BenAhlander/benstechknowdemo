@@ -2,7 +2,7 @@ import OpenAI from "openai";
 
 // This function can run for a maximum of 5 seconds
 export const config = {
-  maxDuration: 20,
+  maxDuration: 30,
 };
 
 export default async function handler(req, res) {
