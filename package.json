@@ -15,6 +15,7 @@
     "@mui/icons-material": "^5.14.3",
     "@mui/lab": "^5.0.0-alpha.139",
     "@mui/material": "^5.14.4",
+    "@vercel/blob": "^0.24.0",
     "@vercel/postgres": "^0.4.1",
     "eslint": "8.47.0",
     "eslint-config-next": "13.4.13",

@@ -37,7 +37,7 @@ export default function Create() {
     event.preventDefault();
     setIsLoading(true);
     try {
-      const response = await fetch("/api/generateDalle2Image", {
+      const response = await fetch("/api/generateImage", {
         method: "POST",
         body: JSON.stringify(formValues),
       });
