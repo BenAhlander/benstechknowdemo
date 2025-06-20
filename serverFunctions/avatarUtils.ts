@@ -1,9 +1,14 @@
 import { sql } from "@vercel/postgres";
 
 export async function getAvatars() {
-  const { rows: getRows } = await sql`SELECT * FROM techno_avatars;`;
-  const sortedRows = getRows.reverse();
-  return sortedRows;
+  try {
+    const { rows: getRows } = await sql`SELECT * FROM techno_avatars;`;
+    const sortedRows = getRows.reverse();
+    return sortedRows;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
 }
 
 export async function createAvatar({ name, description, image_url }) {
