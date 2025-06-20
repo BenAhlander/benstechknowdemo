@@ -12,7 +12,7 @@ import {
 
 import Card from "@/components/Card";
 import CloseIcon from "@mui/icons-material/Close";
-import Grid from "@mui/material/GridLegacy";
+import Grid from "@mui/material/Grid";
 import { LoadingButton } from "@mui/lab";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -88,10 +88,10 @@ export default function Create() {
     <Container maxWidth="sm">
       <Paper style={{ padding: "16px" }}>
         <Grid container spacing={2}>
-          <Grid xs={12}>
+          <Grid size={12}>
             <Typography variant="h4">Create New Avatar</Typography>
           </Grid>
-          <Grid xs={12}>
+          <Grid size={12}>
             <TextField
               name="name"
               fullWidth
@@ -102,7 +102,7 @@ export default function Create() {
               placeholder="Bob"
             />
           </Grid>
-          <Grid xs={12}>
+          <Grid size={12}>
             <TextField
               fullWidth
               label="description"
@@ -116,7 +116,7 @@ export default function Create() {
             />
           </Grid>
           {!activeAvatar ? (
-            <Grid xs={12}>
+            <Grid size={12}>
               <LoadingButton
                 loading={isLoading}
                 fullWidth
@@ -128,7 +128,7 @@ export default function Create() {
             </Grid>
           ) : (
             <>
-              <Grid xs={6}>
+              <Grid size={{ xs: 12, sm: 6 }}>
                 <LoadingButton
                   loading={isLoading}
                   fullWidth
@@ -138,7 +138,7 @@ export default function Create() {
                   Try Again
                 </LoadingButton>
               </Grid>
-              <Grid xs={6}>
+              <Grid size={{ xs: 12, sm: 6 }}>
                 <LoadingButton
                   loading={isSaving}
                   fullWidth
@@ -148,7 +148,7 @@ export default function Create() {
                   Save
                 </LoadingButton>
               </Grid>
-              <Grid xs={12}>
+              <Grid size={12}>
                 <Card
                   name={activeAvatar.name}
                   image={activeAvatar.image_url}
@@ -158,7 +158,7 @@ export default function Create() {
             </>
           )}
           {showSuccessAlert && (
-            <Grid xs={12}>
+            <Grid size={12}>
               <Alert
                 onClose={() => {
                   setShowSuccessAlert(false);
@@ -189,7 +189,7 @@ export default function Create() {
             </Grid>
           )}
           {showError && (
-            <Grid xs={12}>
+            <Grid size={12}>
               <Alert
                 onClose={() => {
                   setShowError(false);

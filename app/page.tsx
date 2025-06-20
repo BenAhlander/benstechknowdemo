@@ -1,6 +1,6 @@
 import Card from "@/components/Card";
 import { Container } from "@mui/material";
-import Grid from "@mui/material/GridLegacy";
+import Grid from "@mui/material/Grid";
 import Head from "next/head";
 import { getAvatars } from "@/serverFunctions/avatarUtils";
 
@@ -20,7 +20,7 @@ export default async function Home() {
         <Container maxWidth="lg">
           <Grid container spacing={3}>
             {avatars.map((avatar, i) => (
-              <Grid key={i} xs={12} sm={6} md={4}>
+              <Grid key={i} size={{ xs: 12, sm: 6, md: 4 }}>
                 <Card
                   name={avatar.name}
                   image={avatar.image}
