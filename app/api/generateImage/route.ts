@@ -22,7 +22,7 @@ export async function POST(req) {
     });
 
     console.log(response);
-    const image_url = response.data[0].url;
+    const image_url = response.data?.[0]?.url ?? "";
 
     // Fetch the image data
     const imageResponse = await fetch(image_url ?? "");

@@ -12,7 +12,7 @@ import {
 
 import Card from "@/components/Card";
 import CloseIcon from "@mui/icons-material/Close";
-import Grid from "@mui/material/Unstable_Grid2";
+import Grid from "@mui/material/GridLegacy";
 import { LoadingButton } from "@mui/lab";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
