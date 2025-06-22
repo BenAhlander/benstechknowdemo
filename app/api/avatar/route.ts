@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 import { sql } from "@vercel/postgres";
 
 export async function POST(req) {
@@ -17,6 +17,17 @@ export async function POST(req) {
   } catch (error) {
     console.error(error);
     // res.status(500).json({ error });
+    return NextResponse.json({ error }, { status: 500 });
+  }
+}
+
+export async function DELETE(req: NextRequest) {
+  try {
+    const { image_url } = await req.json();
+    await sql`DELETE FROM techno_avatars WHERE image = ${image_url};`;
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error(error);
     return NextResponse.json({ error }, { status: 500 });
   }
 }
